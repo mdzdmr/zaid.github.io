@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "mdzdmr 🚀",
   description: "Welcome!",
   icons: {
-    icon: "/mdzdmr/pfp.jpg",
+    icon: "/pfp.jpg",
   },
 };
 
@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
       <html lang="en">
       <head>
-        <link rel="icon" href="../../public/pfp.jpg" />
+        <link rel="icon" href="/pfp.jpg" />
       </head>
       <body className={inter.className}>{children}</body>
       </html>
