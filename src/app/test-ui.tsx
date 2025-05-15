@@ -18,12 +18,12 @@ export function BackgroundBeamsDemo() {
     // Choose one of these color schemes (uncomment your preferred one)
     
     // Original colors (similar to what you have now)
-    const colorScheme = {
-        background: "#101820",  // Dark background
-        primaryBeams: "#FEE715", // Yellow beams
-        headingText: "#138086", // Teal heading text
-        typewriterText: "#FFFFFF" // White typewriter text
-    };
+    // const colorScheme = {
+    //    background: "#101820",  // Dark background
+        //primaryBeams: "#FEE715", // Yellow beams
+        //headingText: "#138086", // Teal heading text
+        //typewriterText: "#FFFFFF" // White typewriter text
+    //};
     
     // Developer Mode (VS Code inspired)
     const colorScheme = {
@@ -34,20 +34,20 @@ export function BackgroundBeamsDemo() {
      };
     
     // Tech Blue
-     const colorScheme = {
-         background: "#0F172A",  // Deep navy
-         primaryBeams: "#38BDF8", // Sky blue
-         headingText: "#38BDF8", // Blue heading text
-         typewriterText: "#FFFFFF" // White typewriter text
-     };
+     //const colorScheme = {
+         //background: "#0F172A",  // Deep navy
+         //primaryBeams: "#38BDF8", // Sky blue
+         //headingText: "#38BDF8", // Blue heading text
+         //typewriterText: "#FFFFFF" // White typewriter text
+     //};
     
     // Matrix
-     const colorScheme = {
-         background: "#0A0E0A",  // Near black
-         primaryBeams: "#00FF41", // Matrix green
-         headingText: "#00FF41", // Green heading text
-         typewriterText: "#FFFFFF" // White typewriter text
-     };
+     //const colorScheme = {
+         //background: "#0A0E0A",  // Near black
+         //primaryBeams: "#00FF41", // Matrix green
+         //headingText: "#00FF41", // Green heading text
+         //typewriterText: "#FFFFFF" // White typewriter text
+     //};
     
     const profilePictureUrl = "/pfp.jpg"; // Path relative to the public folder
     
