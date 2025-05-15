@@ -26,28 +26,28 @@ export function BackgroundBeamsDemo() {
     };
     
     // Developer Mode (VS Code inspired)
-    // const colorScheme = {
-    //     background: "#1E1E1E",  // VS Code dark background
-    //     primaryBeams: "#4EC9B0", // VS Code teal
-    //     headingText: "#4EC9B0", // Teal heading text
-    //     typewriterText: "#FFFFFF" // White typewriter text
-    // };
+    const colorScheme = {
+         background: "#1E1E1E",  // VS Code dark background
+         primaryBeams: "#4EC9B0", // VS Code teal
+         headingText: "#4EC9B0", // Teal heading text
+         typewriterText: "#FFFFFF" // White typewriter text
+     };
     
     // Tech Blue
-    // const colorScheme = {
-    //     background: "#0F172A",  // Deep navy
-    //     primaryBeams: "#38BDF8", // Sky blue
-    //     headingText: "#38BDF8", // Blue heading text
-    //     typewriterText: "#FFFFFF" // White typewriter text
-    // };
+     const colorScheme = {
+         background: "#0F172A",  // Deep navy
+         primaryBeams: "#38BDF8", // Sky blue
+         headingText: "#38BDF8", // Blue heading text
+         typewriterText: "#FFFFFF" // White typewriter text
+     };
     
     // Matrix
-    // const colorScheme = {
-    //     background: "#0A0E0A",  // Near black
-    //     primaryBeams: "#00FF41", // Matrix green
-    //     headingText: "#00FF41", // Green heading text
-    //     typewriterText: "#FFFFFF" // White typewriter text
-    // };
+     const colorScheme = {
+         background: "#0A0E0A",  // Near black
+         primaryBeams: "#00FF41", // Matrix green
+         headingText: "#00FF41", // Green heading text
+         typewriterText: "#FFFFFF" // White typewriter text
+     };
     
     const profilePictureUrl = "/pfp.jpg"; // Path relative to the public folder
     
