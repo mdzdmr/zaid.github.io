@@ -2,7 +2,19 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCloud, faBrain, faRuler, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { 
+  faBuilding, 
+  faGraduationCap, 
+  faBriefcase, 
+  faCalendarAlt, 
+  faCode,
+  faLaptopCode,
+  faServer,
+  faCloud,
+  faBrain,
+  faTools,
+  faDatabase
+} from "@fortawesome/free-solid-svg-icons";
 import { faDocker } from "@fortawesome/free-brands-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
