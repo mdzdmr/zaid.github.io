@@ -3,6 +3,7 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { 
+  faPencilRuler,
   faBuilding, 
   faGraduationCap, 
   faBriefcase, 
