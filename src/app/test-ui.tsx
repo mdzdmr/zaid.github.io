@@ -1,114 +1,305 @@
 "use client";
-import React from "react";
-import { BackgroundBeams } from "@/components/ui/aurora-background"; // Keep your current import path
+import React, { useState, useEffect } from "react";
+import { BackgroundBeams } from "@/components/ui/aurora-background";
 import { TypewriterEffectSmooth } from "@/components/ui/typewriter-effect";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope, faFileAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faFileAlt, faCode, faBriefcase, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { motion } from "framer-motion";
 
 export function BackgroundBeamsDemo() {
-    const words = [
-        { text: "Software Developer" },
-        { text: "Data Scientist" },
-        { text: "Tech Enthusiast" },
-        { text: "AI/ML Engineer" },
-    ];
-    
-    // Choose one of these color schemes (uncomment your preferred one)
-    
-    // Original colors (similar to what you have now)
-    // const colorScheme = {
-    //    background: "#101820",  // Dark background
-        //primaryBeams: "#FEE715", // Yellow beams
-        //headingText: "#138086", // Teal heading text
-        //typewriterText: "#FFFFFF" // White typewriter text
-    //};
-    
-    // Developer Mode (VS Code inspired)
-    const colorScheme = {
-         background: "#1E1E1E",  // VS Code dark background
-         primaryBeams: "#4EC9B0", // VS Code teal
-         headingText: "#4EC9B0", // Teal heading text
-         typewriterText: "#FFFFFF" // White typewriter text
-     };
-    
-    // Tech Blue
-     //const colorScheme = {
-         //background: "#0F172A",  // Deep navy
-         //primaryBeams: "#38BDF8", // Sky blue
-         //headingText: "#38BDF8", // Blue heading text
-         //typewriterText: "#FFFFFF" // White typewriter text
-     //};
-    
-    // Matrix
-     //const colorScheme = {
-         //background: "#0A0E0A",  // Near black
-         //primaryBeams: "#00FF41", // Matrix green
-         //headingText: "#00FF41", // Green heading text
-         //typewriterText: "#FFFFFF" // White typewriter text
-     //};
-    
-    const profilePictureUrl = "/pfp.jpg"; // Path relative to the public folder
-    
-    return (
-        <div 
-            className="h-screen w-full relative antialiased flex flex-col items-center justify-center" 
-            style={{ backgroundColor: colorScheme.background }}
-        >
-            <div className="absolute inset-0 z-0">
-                <BackgroundBeams 
-                    primaryColor={colorScheme.primaryBeams}
-                    backgroundColor={colorScheme.background}
-                    // Add these props to your BackgroundBeams component
-                    // These will only work if you've updated your BackgroundBeams component
-                    // to accept these props as shown in the EnhancedBackgroundBeams.tsx
-                    density="medium"
-                    speed="medium"
-                />
-            </div>
-            
-            <div className="z-10 flex flex-col items-center space-y-8">
-                <div className="flex flex-col items-center space-y-4 mt-8">
-                    <Image
-                        src={profilePictureUrl}
-                        alt="Profile Picture"
-                        width={200}
-                        height={200}
-                        className="rounded-full w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 xl:w-56 xl:h-56"
-                    />
-                    <div className="flex justify-center space-x-6 mt-4">
-                        <a href="https://www.linkedin.com/in/mohammed-zaid-mir" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300">
-                            <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                        </a>
-                        <a href="https://github.com/mdzdmr" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300">
-                            <FontAwesomeIcon icon={faGithub} size="lg" />
-                        </a>
-                        <a href="/MohammedZaidMir_Resume.pdf" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-300">
-                            <FontAwesomeIcon icon={faFileAlt} size="lg" />
-                        </a>
-                        <a href="mailto:mmir28@uwo.ca" className="text-white hover:text-gray-300">
-                            <FontAwesomeIcon icon={faEnvelope} size="lg" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div className="z-10 flex flex-col items-center space-y-4 text-center mt-8">
-                <div className="relative text-lg md:text-7xl font-sans font-bold" style={{ color: colorScheme.headingText }}>
-                    <span>Welcome</span>
-                </div>
-                <div className="relative text-lg md:text-7xl font-sans font-bold" style={{ color: colorScheme.headingText }}>
-                    <span>My name is Zaid and</span>
-                </div>
-                <div className="relative text-lg md:text-7xl font-sans font-bold flex items-center">
-                    <span style={{ color: colorScheme.headingText }}>I&apos;m a&nbsp;</span>
-                    <div className="inline-block" style={{ color: colorScheme.typewriterText }}>
-                        <TypewriterEffectSmooth words={words} cursorClassName={`text-[${colorScheme.typewriterText}]`} />
-                    </div>
-                    <span style={{ color: colorScheme.headingText }}>!</span>
-                </div>
-            </div>
+  const [section, setSection] = useState("home");
+  const [scrolled, setScrolled] = useState(false);
+  
+  // Track scroll position to create a translucent navbar effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const words = [
+    { text: "Software Developer" },
+    { text: "Data Scientist" },
+    { text: "Tech Enthusiast" },
+    { text: "AI/ML Engineer" },
+  ];
+  
+  // Color scheme - Modern dark tech palette
+  const colors = {
+    background: "#0a101e", // Dark blue-gray
+    accent: "#4db6ac", // Modern teal
+    text: "#e2e8f0", // Light gray
+    highlight: "#f59e0b", // Amber for highlights
+    secondary: "#38bdf8", // Light blue for secondary elements
+  };
+  
+  const profilePictureUrl = "/pfp.jpg"; // Path relative to the public folder
+  
+  return (
+    <div className="min-h-screen w-full relative antialiased" style={{ backgroundColor: colors.background }}>
+      {/* Navbar */}
+      <motion.nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-opacity-80 backdrop-blur-md py-2' : 'bg-opacity-0 py-4'}`}
+        style={{ backgroundColor: scrolled ? colors.background : 'transparent' }}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="container mx-auto px-4 flex justify-between items-center">
+          <span className="text-2xl font-bold" style={{ color: colors.accent }}>
+            mdzdmr<span style={{ color: colors.highlight }}>.</span>
+          </span>
+          
+          <div className="hidden md:flex space-x-6">
+            <NavButton icon={faUserCircle} label="About" section="home" currentSection={section} setSection={setSection} colors={colors} />
+            <NavButton icon={faCode} label="Projects" section="projects" currentSection={section} setSection={setSection} colors={colors} />
+            <NavButton icon={faBriefcase} label="Experience" section="experience" currentSection={section} setSection={setSection} colors={colors} />
+            <NavButton icon={faEnvelope} label="Contact" section="contact" currentSection={section} setSection={setSection} colors={colors} />
+          </div>
+          
+          <button 
+            className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+            style={{ 
+              backgroundColor: colors.accent, 
+              color: colors.background,
+            }}
+          >
+            Get In Touch
+          </button>
         </div>
-    );
+      </motion.nav>
+      
+      {/* Background Effect */}
+      <div className="absolute inset-0 z-0">
+        <BackgroundBeams 
+          primaryColor={colors.accent}
+          backgroundColor={colors.background}
+          density="medium"
+          speed="medium"
+        />
+      </div>
+      
+      {/* Hero Section */}
+      <div className="relative z-10 min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 pt-20">
+        {/* Profile Info Column */}
+        <motion.div 
+          className="md:w-1/2 text-center md:text-left mb-10 md:mb-0"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <motion.h1 
+            className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
+            style={{ color: colors.text }}
+          >
+            <span>Hi, I'm </span>
+            <span style={{ color: colors.accent }}>Zaid</span>
+          </motion.h1>
+          
+          <motion.div 
+            className="text-2xl md:text-4xl lg:text-5xl font-bold flex flex-wrap items-center mb-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <span style={{ color: colors.text }}>I'm a </span>
+            <div className="inline-block ml-2" style={{ color: colors.highlight }}>
+              <TypewriterEffectSmooth 
+                words={words} 
+                cursorClassName={`text-[${colors.highlight}]`} 
+              />
+            </div>
+          </motion.div>
+          
+          <motion.p 
+            className="text-lg md:text-xl mb-8 max-w-xl"
+            style={{ color: colors.text + "cc" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            Crafting elegant solutions to complex problems with code. 
+            Passionate about building intuitive, high-performance applications 
+            and exploring cutting-edge technologies.
+          </motion.p>
+          
+          <motion.div 
+            className="flex flex-wrap justify-center md:justify-start gap-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.7, duration: 0.8 }}
+          >
+            <button 
+              className="px-6 py-3 rounded-full text-base font-medium transition-all duration-300 flex items-center"
+              style={{ 
+                backgroundColor: colors.accent, 
+                color: colors.background,
+              }}
+            >
+              <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+              View My Work
+            </button>
+            
+            <button 
+              className="px-6 py-3 rounded-full text-base font-medium border-2 transition-all duration-300 flex items-center"
+              style={{ 
+                borderColor: colors.accent, 
+                color: colors.text,
+              }}
+            >
+              <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
+              Download CV
+            </button>
+          </motion.div>
+        </motion.div>
+        
+        {/* Profile Image Column with Tech Cards */}
+        <motion.div 
+          className="md:w-1/2 flex flex-col items-center justify-center relative"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Decorative elements */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-72 h-72 rounded-full bg-gradient-to-tr from-blue-500/10 to-teal-500/10 blur-2xl"></div>
+          </div>
+          
+          <div className="relative">
+            {/* Profile image with glowing border */}
+            <motion.div 
+              className="mb-6 p-1 rounded-full bg-gradient-to-tr from-teal-400 to-blue-500 shadow-lg shadow-teal-500/20"
+              animate={{ 
+                boxShadow: [
+                  "0 10px 15px -3px rgba(77, 182, 172, 0.2)",
+                  "0 20px 30px -3px rgba(77, 182, 172, 0.4)",
+                  "0 10px 15px -3px rgba(77, 182, 172, 0.2)",
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              <div className="rounded-full overflow-hidden border-4 border-gray-900 w-48 h-48 md:w-64 md:h-64">
+                <Image
+                  src={profilePictureUrl}
+                  alt="Zaid Mir"
+                  width={300}
+                  height={300}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </motion.div>
+            
+            {/* Tech skill cards */}
+            <div className="absolute inset-0 -z-10">
+              <TechCard title="TypeScript" icon="📱" color="#3178c6" position="-top-10 -left-16" delay={0.4} />
+              <TechCard title="React" icon="⚛️" color="#61dafb" position="top-20 -right-20" delay={0.7} />
+              <TechCard title="ML/AI" icon="🧠" color="#ff6bcb" position="bottom-10 -left-14" delay={1.0} />
+              <TechCard title="Node.js" icon="🔄" color="#8bc500" position="bottom-0 -right-10" delay={1.3} />
+            </div>
+          </div>
+          
+          {/* Social links */}
+          <motion.div 
+            className="flex justify-center space-x-6 mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            <SocialLink href="https://www.linkedin.com/in/mohammed-zaid-mir" icon={faLinkedin} color={colors.secondary} />
+            <SocialLink href="https://github.com/mdzdmr" icon={faGithub} color={colors.secondary} />
+            <SocialLink href="mailto:mmir28@uwo.ca" icon={faEnvelope} color={colors.secondary} />
+            <SocialLink href="/MohammedZaidMir_Resume.pdf" icon={faFileAlt} color={colors.secondary} />
+          </motion.div>
+        </motion.div>
+      </div>
+      
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+      >
+        <span className="text-sm mb-2" style={{ color: colors.text + "80" }}>Scroll Down</span>
+        <motion.div 
+          className="w-6 h-10 rounded-full border-2 flex justify-center p-1"
+          style={{ borderColor: colors.text + "40" }}
+        >
+          <motion.div 
+            className="w-1 rounded-full h-2"
+            style={{ backgroundColor: colors.accent }}
+            animate={{ 
+              y: [0, 12, 0],
+            }}
+            transition={{ 
+              duration: 1.5, 
+              repeat: Infinity,
+              ease: "easeInOut" 
+            }}
+          ></motion.div>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
 }
+
+// Navigation Button Component
+const NavButton = ({ icon, label, section, currentSection, setSection, colors }) => {
+  return (
+    <button 
+      onClick={() => setSection(section)}
+      className="flex items-center space-x-1 px-2 py-1 transition-colors duration-300"
+      style={{ color: currentSection === section ? colors.accent : colors.text }}
+    >
+      <FontAwesomeIcon icon={icon} />
+      <span>{label}</span>
+      {currentSection === section && (
+        <motion.div 
+          layoutId="navIndicator"
+          className="absolute bottom-0 h-0.5 w-full left-0"
+          style={{ backgroundColor: colors.accent }}
+          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        />
+      )}
+    </button>
+  );
+};
+
+// Social Link Component
+const SocialLink = ({ href, icon, color }) => {
+  return (
+    <motion.a 
+      href={href} 
+      target="_blank" 
+      rel="noopener noreferrer"
+      className="flex items-center justify-center w-12 h-12 rounded-full transition-transform hover:scale-110"
+      style={{ backgroundColor: color + '20', color: color }}
+      whileHover={{ y: -5 }}
+    >
+      <FontAwesomeIcon icon={icon} size="lg" />
+    </motion.a>
+  );
+};
+
+// Tech Card Component
+const TechCard = ({ title, icon, color, position, delay = 0 }) => {
+  return (
+    <motion.div 
+      className={`absolute ${position} py-2 px-3 rounded-lg shadow-lg backdrop-blur-md`}
+      style={{ backgroundColor: 'rgba(23, 23, 33, 0.8)', border: `1px solid ${color + '30'}` }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay, duration: 0.5 }}
+      whileHover={{ y: -5 }}
+    >
+      <div className="flex items-center space-x-2">
+        <span className="text-xl">{icon}</span>
+        <span style={{ color: color }}>{title}</span>
+      </div>
+    </motion.div>
+  );
+};
