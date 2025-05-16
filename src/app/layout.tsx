@@ -14,29 +14,32 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en">
+    <html lang="en">
       <head>
         <link rel="icon" href="/pfp.jpg" />
-        {/* Google Tag Manager */}
-          <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJJBT43FX1"></script>
-          <script
-              dangerouslySetInnerHTML={{
-                  __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-CJJBT43FX1');
-            `,
-              }}
-          />
-          {/* End Google Tag Manager */}
       </head>
-      <body className={inter.className}>{children}</body>
-      </html>
+      <body className={inter.className}>
+        {children}
+        
+        {/* Google Tag Manager - using next/script properly */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CJJBT43FX1"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-CJJBT43FX1');
+          `}
+        </Script>
+      </body>
+    </html>
   );
 }
