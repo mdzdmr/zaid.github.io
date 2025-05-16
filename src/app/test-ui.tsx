@@ -155,9 +155,7 @@ export function BackgroundBeamsDemo() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            Crafting elegant solutions to complex problems with code. 
-            Passionate about building intuitive, high-performance applications 
-            and exploring cutting-edge technologies.
+            Focused on writing clean, robust code that solves real-world problems.
           </motion.p>
           
           <motion.div 
