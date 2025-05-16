@@ -99,7 +99,7 @@ export function BackgroundBeamsDemo() {
   const profilePictureUrl = "/pfp.jpg"; // Path relative to the public folder
   
   
-return (
+  return (
   <div className="relative antialiased" style={{ backgroundColor: colors.background }}>
     {/* Navbar */}
     <motion.nav 
