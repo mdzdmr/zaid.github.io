@@ -8,6 +8,9 @@ import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faFileAlt, faCode, faBriefcase, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { Projects3DCarousel } from "@/components/Projects3DCarousel";
+import { ProfessionalExperience } from "@/components/ProfessionalExperience";
+import { ContactSection } from "@/components/ContactSection";
 
 // Define TypeScript interfaces for component props
 interface NavButtonProps {
@@ -44,15 +47,38 @@ interface ColorScheme {
 export function BackgroundBeamsDemo() {
   const [section, setSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+
+  const scrollToSection = (sectionId: string) => {
+  setSection(sectionId);
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: "smooth" });
+  }
+};
   
   // Track scroll position to create a translucent navbar effect
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const handleScroll = () => {
+    setScrolled(window.scrollY > 50);
+    
+    // Update active section based on scroll position
+    const sections = ["home", "projects", "experience", "contact"];
+    
+    for (const section of sections) {
+      const element = document.getElementById(section);
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+          setSection(section);
+          break;
+        }
+      }
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll);
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
 
   const words = [
     { text: "Software Developer" },
@@ -72,40 +98,44 @@ export function BackgroundBeamsDemo() {
   
   const profilePictureUrl = "/pfp.jpg"; // Path relative to the public folder
   
-  return (
-    <div className="min-h-screen w-full relative antialiased" style={{ backgroundColor: colors.background }}>
-      {/* Navbar */}
-      <motion.nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-opacity-80 backdrop-blur-md py-2' : 'bg-opacity-0 py-4'}`}
-        style={{ backgroundColor: scrolled ? colors.background : 'transparent' }}
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="container mx-auto px-4 flex justify-between items-center">
-          <span className="text-2xl font-bold" style={{ color: colors.accent }}>
-            mdzdmr<span style={{ color: colors.highlight }}>.</span>
-          </span>
-          
-          <div className="hidden md:flex space-x-6">
-            <NavButton icon={faUserCircle} label="About" section="home" currentSection={section} setSection={setSection} colors={colors} />
-            <NavButton icon={faCode} label="Projects" section="projects" currentSection={section} setSection={setSection} colors={colors} />
-            <NavButton icon={faBriefcase} label="Experience" section="experience" currentSection={section} setSection={setSection} colors={colors} />
-            <NavButton icon={faEnvelope} label="Contact" section="contact" currentSection={section} setSection={setSection} colors={colors} />
-          </div>
-          
-          <button 
-            className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
-            style={{ 
-              backgroundColor: colors.accent, 
-              color: colors.background,
-            }}
-          >
-            Get In Touch
-          </button>
+  
+return (
+  <div className="relative antialiased" style={{ backgroundColor: colors.background }}>
+    {/* Navbar */}
+    <motion.nav 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-opacity-80 backdrop-blur-md py-2' : 'bg-opacity-0 py-4'}`}
+      style={{ backgroundColor: scrolled ? colors.background : 'transparent' }}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        <span className="text-2xl font-bold" style={{ color: colors.accent }}>
+          mdzdmr<span style={{ color: colors.highlight }}>.</span>
+        </span>
+        
+        <div className="hidden md:flex space-x-6">
+          <NavButton icon={faUserCircle} label="About" section="home" currentSection={section} setSection={setSection} colors={colors} />
+          <NavButton icon={faCode} label="Projects" section="projects" currentSection={section} setSection={setSection} colors={colors} />
+          <NavButton icon={faBriefcase} label="Experience" section="experience" currentSection={section} setSection={setSection} colors={colors} />
+          <NavButton icon={faEnvelope} label="Contact" section="contact" currentSection={section} setSection={setSection} colors={colors} />
         </div>
-      </motion.nav>
-      
+        
+        <button 
+          className="px-4 py-2 rounded-full text-sm font-medium transition-all duration-300"
+          style={{ 
+            backgroundColor: colors.accent, 
+            color: colors.background,
+          }}
+          onClick={() => scrollToSection("contact")}
+        >
+          Get In Touch
+        </button>
+      </div>
+    </motion.nav>
+    
+    {/* Home Section */}
+    <section id="home" className="relative min-h-screen">
       {/* Background Effect */}
       <div className="absolute inset-0 z-0">
         <BackgroundBeams 
@@ -116,7 +146,7 @@ export function BackgroundBeamsDemo() {
         />
       </div>
       
-      {/* Hero Section */}
+      {/* Hero Content - Your existing content */}
       <div className="relative z-10 min-h-screen flex flex-col md:flex-row items-center justify-center px-4 md:px-10 pt-20">
         {/* Profile Info Column */}
         <motion.div 
@@ -170,12 +200,15 @@ export function BackgroundBeamsDemo() {
                 backgroundColor: colors.accent, 
                 color: colors.background,
               }}
+              onClick={() => scrollToSection("projects")}
             >
               <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
               View My Work
             </button>
             
-            <button 
+            <a 
+              href="/MohammedZaidMir_Resume.pdf" 
+              target="_blank"
               className="px-6 py-3 rounded-full text-base font-medium border-2 transition-all duration-300 flex items-center"
               style={{ 
                 borderColor: colors.accent, 
@@ -184,7 +217,7 @@ export function BackgroundBeamsDemo() {
             >
               <FontAwesomeIcon icon={faFileAlt} className="mr-2" />
               Download CV
-            </button>
+            </a>
           </motion.div>
         </motion.div>
         
@@ -274,15 +307,39 @@ export function BackgroundBeamsDemo() {
           ></motion.div>
         </motion.div>
       </motion.div>
-    </div>
-  );
-}
+    </section>
+    
+    {/* Projects Section */}
+    <section id="projects">
+      <Projects3DCarousel colors={colors} />
+    </section>
+    
+    {/* Experience Section */}
+    <section id="experience">
+      <ProfessionalExperience colors={colors} />
+    </section>
+    
+    {/* Contact Section */}
+    <section id="contact">
+      <ContactSection colors={colors} />
+    </section>
+    
+    {/* Footer */}
+    <footer className="py-6 text-center" style={{ backgroundColor: colors.background }}>
+      <div className="container mx-auto px-4">
+        <p style={{ color: colors.text + "80" }}>
+          © {new Date().getFullYear()} Mohammed Zaid Mir. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  </div>
+);
 
 // Navigation Button Component
 const NavButton = ({ icon, label, section, currentSection, setSection, colors }: NavButtonProps) => {
   return (
     <button 
-      onClick={() => setSection(section)}
+      onClick={() => scrollToSection(section)}
       className="flex items-center space-x-1 px-2 py-1 transition-colors duration-300"
       style={{ color: currentSection === section ? colors.accent : colors.text }}
     >
