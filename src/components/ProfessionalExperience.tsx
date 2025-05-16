@@ -2,7 +2,8 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBuilding, faGraduationCap, faBriefcase, faCalendarAlt, faMobileAlt, faDatabase, faCode, faLaptopCode, faServer } from "@fortawesome/free-solid-svg-icons";
+import { faCloud, faBrain, faRuler, faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faDocker } from "@fortawesome/free-brands-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 
 interface ExperienceData {
@@ -330,4 +331,3 @@ const TimelineItem = ({ experience, index, colors }: TimelineItemProps) => {
 };
 
 // Add these imports at the top of your file:
-import { faCloud, faDocker, faPencilRuler, faBrain } from "@fortawesome/free-solid-svg-icons";
