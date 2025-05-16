@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faFileAlt, faCode, faBriefcase, faUserCircle, faCloud, faBrain, faTools } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { Projects3DCarousel } from "@/components/Projects3DCarousel";
 import { ProfessionalExperience } from "@/components/ProfessionalExperience";
@@ -61,6 +62,22 @@ export function BackgroundBeamsDemo() {
     setSection(sectionId);
     scrollToElement(sectionId);
   };
+
+  // Handle next/prev section navigation
+  
+  const navigateSection = (direction: 'next' | 'prev') => {
+    const sections = ["home", "projects", "experience", "contact"];
+    const currentIndex = sections.indexOf(section);
+    let newIndex;
+    
+    if (direction === 'next') {
+      newIndex = Math.min(currentIndex + 1, sections.length - 1);
+    } else {
+      newIndex = Math.max(currentIndex - 1, 0);
+    }
+    
+    scrollToSection(sections[newIndex]);
+  };
   
   // Track scroll position to create a translucent navbar effect
   useEffect(() => {
@@ -114,6 +131,42 @@ export function BackgroundBeamsDemo() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
+        {/* Navigation Dots */}
+      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-4">
+        {["home", "projects", "experience", "contact"].map((sectionId) => (
+          <button
+            key={sectionId}
+            onClick={() => scrollToSection(sectionId)}
+            className="w-3 h-3 rounded-full transition-all duration-300"
+            style={{
+              backgroundColor: section === sectionId ? colors.accent : colors.text + "40",
+              transform: section === sectionId ? "scale(1.5)" : "scale(1)",
+            }}
+            aria-label={`Navigate to ${sectionId} section`}
+          />
+        ))}
+      </div>
+      
+      {/* Navigation Arrows */}
+      <button 
+        className={`fixed left-1/2 bottom-8 transform -translate-x-1/2 z-50 p-3 rounded-full bg-opacity-20 transition-opacity duration-300 ${section === "contact" ? "opacity-0" : "opacity-100"}`}
+        style={{ backgroundColor: colors.accent + "20", color: colors.accent }}
+        onClick={() => navigateSection('next')}
+        disabled={section === "contact"}
+        aria-label="Next section"
+      >
+        <FontAwesomeIcon icon={faChevronDown} />
+      </button>
+      
+      <button 
+        className={`fixed left-1/2 top-24 transform -translate-x-1/2 z-50 p-3 rounded-full bg-opacity-20 transition-opacity duration-300 ${section === "home" ? "opacity-0" : "opacity-100"}`}
+        style={{ backgroundColor: colors.accent + "20", color: colors.accent }}
+        onClick={() => navigateSection('prev')}
+        disabled={section === "home"}
+        aria-label="Previous section"
+      >
+        <FontAwesomeIcon icon={faChevronUp} />
+      </button>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <span className="text-2xl font-bold" style={{ color: colors.accent }}>
             mdzdmr<span style={{ color: colors.highlight }}>.</span>
@@ -140,7 +193,7 @@ export function BackgroundBeamsDemo() {
       </motion.nav>
       
       {/* Home Section */}
-      <section id="home" className="relative min-h-screen">
+      <section id="home" className="relative h-screen w-full snap-start snap-always">
         {/* Background Effect */}
         <div className="absolute inset-0 z-0">
           <BackgroundBeams 
@@ -315,18 +368,22 @@ export function BackgroundBeamsDemo() {
       </section>
       
       {/* Projects Section */}
-      <section id="projects">
-        <Projects3DCarousel colors={colors} />
+      <section id="projects" className="h-screen w-full snap-start snap-always overflow-hidden">
+        <div className="h-full overflow-y-auto">
+          <Projects3DCarousel colors={colors} />
+        </div>
       </section>
       
-      {/* Experience Section */}
-      <section id="experience">
-        <ProfessionalExperience colors={colors} />
+      <section id="experience" className="h-screen w-full snap-start snap-always overflow-hidden">
+        <div className="h-full overflow-y-auto">
+          <ProfessionalExperience colors={colors} />
+        </div>
       </section>
       
-      {/* Contact Section */}
-      <section id="contact">
-        <ContactSection colors={colors} />
+      <section id="contact" className="h-screen w-full snap-start snap-always overflow-hidden">
+        <div className="h-full overflow-y-auto">
+          <ContactSection colors={colors} />
+        </div>
       </section>
       
       {/* Footer */}
