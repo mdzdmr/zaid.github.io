@@ -88,7 +88,7 @@ export const ContactSection = ({ colors }: { colors: any }) => {
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        Have a project in mind or want to chat? Send me a message and I'll get back to you soon!
+        Have a project in mind or want to chat? Send me a message and I&apos;ll get back to you soon!
       </motion.p>
       
       <div className="max-w-6xl mx-auto">
@@ -262,7 +262,7 @@ export const ContactSection = ({ colors }: { colors: any }) => {
                     className="text-center mb-6"
                     style={{ color: colors.text + "99" }}
                   >
-                    Thank you for reaching out. I'll get back to you as soon as possible.
+                    Thank you for reaching out. I&apos;ll get back to you as soon as possible.
                   </p>
                   
                   <button
