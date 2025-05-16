@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faFileAlt, faCode, faBriefcase, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faCloud, faBrain, faCode, faTools } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { Projects3DCarousel } from "@/components/Projects3DCarousel";
