@@ -120,23 +120,23 @@ export const ContactSection = ({ colors }: { colors: any }) => {
                 <ContactItem 
                   icon={faEnvelope} 
                   title="Email" 
-                  detail="hello@mdzdmr.com"
-                  link="mailto:hello@mdzdmr.com" 
+                  detail="mmir28@uwo.ca"
+                  link="mailto:mmir28@uwo.ca" 
                   colors={colors}
                 />
                 
                 <ContactItem 
                   icon={faMapMarkerAlt} 
                   title="Location" 
-                  detail="London, Ontario, Canada" 
+                  detail="London, ON" 
                   colors={colors}
                 />
                 
                 <ContactItem 
                   icon={faPhone} 
                   title="Phone" 
-                  detail="+1 (123) 456-7890" 
-                  link="tel:+11234567890"
+                  detail="+1 (519) 709-9278" 
+                  link="tel:+15197099278"
                   colors={colors}
                 />
               </div>
@@ -160,11 +160,7 @@ export const ContactSection = ({ colors }: { colors: any }) => {
                     href="https://github.com/mdzdmr" 
                     colors={colors}
                   />
-                  <SocialButton 
-                    icon={faTwitter} 
-                    href="https://twitter.com/yourusername" 
-                    colors={colors}
-                  />
+                  
                 </div>
               </div>
               
