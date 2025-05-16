@@ -96,7 +96,7 @@ export function BackgroundBeamsDemo() {
             className="text-4xl md:text-6xl lg:text-7xl font-bold mb-4"
             style={{ color: colors.text }}
           >
-            <span>Hi, I'm </span>
+            <span>Hi, I&apos;m </span>
             <span style={{ color: colors.accent }}>Zaid</span>
           </motion.h1>
           
@@ -106,7 +106,7 @@ export function BackgroundBeamsDemo() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span style={{ color: colors.text }}>I'm a </span>
+            <span style={{ color: colors.text }}>I&apos;m a </span>
             <div className="inline-block ml-2" style={{ color: colors.highlight }}>
               <TypewriterEffectSmooth 
                 words={words} 
