@@ -334,6 +334,7 @@ export function BackgroundBeamsDemo() {
     </footer>
   </div>
 );
+}
 
 // Navigation Button Component
 const NavButton = ({ icon, label, section, currentSection, setSection, colors }: NavButtonProps) => {
