@@ -7,6 +7,39 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faEnvelope, faFileAlt, faCode, faBriefcase, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+
+// Define TypeScript interfaces for component props
+interface NavButtonProps {
+  icon: IconDefinition;
+  label: string;
+  section: string;
+  currentSection: string;
+  setSection: (section: string) => void;
+  colors: ColorScheme;
+}
+
+interface SocialLinkProps {
+  href: string;
+  icon: IconDefinition;
+  color: string;
+}
+
+interface TechCardProps {
+  title: string;
+  icon: string;
+  color: string;
+  position: string;
+  delay?: number;
+}
+
+interface ColorScheme {
+  background: string;
+  accent: string;
+  text: string;
+  highlight: string;
+  secondary: string;
+}
 
 export function BackgroundBeamsDemo() {
   const [section, setSection] = useState("home");
@@ -29,7 +62,7 @@ export function BackgroundBeamsDemo() {
   ];
   
   // Color scheme - Modern dark tech palette
-  const colors = {
+  const colors: ColorScheme = {
     background: "#0a101e", // Dark blue-gray
     accent: "#4db6ac", // Modern teal
     text: "#e2e8f0", // Light gray
@@ -248,7 +281,7 @@ export function BackgroundBeamsDemo() {
 }
 
 // Navigation Button Component
-const NavButton = ({ icon, label, section, currentSection, setSection, colors }) => {
+const NavButton = ({ icon, label, section, currentSection, setSection, colors }: NavButtonProps) => {
   return (
     <button 
       onClick={() => setSection(section)}
@@ -270,7 +303,7 @@ const NavButton = ({ icon, label, section, currentSection, setSection, colors })
 };
 
 // Social Link Component
-const SocialLink = ({ href, icon, color }) => {
+const SocialLink = ({ href, icon, color }: SocialLinkProps) => {
   return (
     <motion.a 
       href={href} 
@@ -286,7 +319,7 @@ const SocialLink = ({ href, icon, color }) => {
 };
 
 // Tech Card Component
-const TechCard = ({ title, icon, color, position, delay = 0 }) => {
+const TechCard = ({ title, icon, color, position, delay = 0 }: TechCardProps) => {
   return (
     <motion.div 
       className={`absolute ${position} py-2 px-3 rounded-lg shadow-lg backdrop-blur-md`}
