@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { Projects3DCarousel } from "@/components/Projects3DCarousel";
+import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { ProfessionalExperience } from "@/components/ProfessionalExperience";
 import { ContactSection } from "@/components/ContactSection";
 
@@ -370,7 +371,7 @@ export function BackgroundBeamsDemo() {
       {/* Projects Section */}
       <section id="projects" className="h-screen w-full snap-start snap-always overflow-hidden">
         <div className="h-full overflow-y-auto">
-          <Projects3DCarousel colors={colors} />
+          <ProjectsGrid colors={colors} />
         </div>
       </section>
       
