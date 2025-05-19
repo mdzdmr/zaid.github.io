@@ -170,7 +170,7 @@ export function BackgroundBeamsDemo() {
       </button>
         <div className="container mx-auto px-4 flex justify-between items-center">
           <span className="text-2xl font-bold" style={{ color: colors.accent }}>
-            mdzdmr<span style={{ color: colors.highlight }}>.</span>
+            mdzdmr<span style={{ color: colors.highlight }}>.com</span>
           </span>
           
           <div className="hidden md:flex space-x-6">
