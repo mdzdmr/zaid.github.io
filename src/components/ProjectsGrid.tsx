@@ -82,9 +82,9 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
   };
   
   return (
-    <div className="min-h-screen py-16 px-4 md:px-8" style={{ background: colors.background }}>
+    <div className="h-screen flex flex-col py-10 px-4 md:px-8" style={{ background: colors.background }}>
       <motion.h2 
-        className="text-4xl md:text-5xl font-bold mb-12 text-center"
+        className="text-4xl md:text-5xl font-bold mb-8 text-center"
         style={{ color: colors.text }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -94,7 +94,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
       </motion.h2>
       
       <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto flex-1"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -111,7 +111,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
               border: `1px solid ${project.color}30`,
             }}
           >
-            <div className="relative h-40 w-full">
+            <div className="relative h-28 w-full">
               <div 
                 className="absolute inset-0 flex items-center justify-center"
                 style={{ 
@@ -123,17 +123,17 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
               </div>
             </div>
             
-            <div className="p-4">
-              <h3 className="text-lg font-bold mb-2" style={{ color: project.color }}>
+            <div className="p-3">
+              <h3 className="text-lg font-bold mb-1" style={{ color: project.color }}>
                 {project.title}
               </h3>
               
-              <p className="text-sm mb-3" style={{ color: colors.text + "cc" }}>
+              <p className="text-xs mb-2" style={{ color: colors.text + "cc" }}>
                 {project.description}
               </p>
               
-              <div className="flex flex-wrap gap-1 mb-3">
-                {project.techStack.slice(0, 3).map(tech => (
+              <div className="flex flex-wrap gap-1 mb-2">
+                {project.techStack.slice(0, 2).map(tech => (
                   <span 
                     key={`${project.id}-${tech}`}
                     className="px-2 py-0.5 text-xs rounded-full"
@@ -145,7 +145,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
                     {tech}
                   </span>
                 ))}
-                {project.techStack.length > 3 && (
+                {project.techStack.length > 2 && (
                   <span 
                     className="px-2 py-0.5 text-xs rounded-full"
                     style={{ 
@@ -153,7 +153,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
                       color: project.color 
                     }}
                   >
-                    +{project.techStack.length - 3}
+                    +{project.techStack.length - 2}
                   </span>
                 )}
               </div>
