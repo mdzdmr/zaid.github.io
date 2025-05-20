@@ -20,7 +20,7 @@ const experiences: ExperienceData[] = [
   {
     id: 1,
     company: "Robarts Research Institute",
-    position: "Software Engineer Intern",
+    position: "SWE Intern",
     duration: "May 2025 - Present",
     category: 'work',
     color: "#4db6ac",
@@ -47,7 +47,7 @@ const experiences: ExperienceData[] = [
   {
     id: 4,
     company: "University of Western Ontario",
-    position: "UG Student Researcher",
+    position: "UG Researcher",
     duration: "January 2025 - Jun 2023",
     category: 'work',
     color: "#fb8c00",
