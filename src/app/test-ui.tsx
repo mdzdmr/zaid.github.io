@@ -335,15 +335,6 @@ export function BackgroundBeamsDemo() {
       <section id="contact" className="h-screen w-full snap-start snap-always overflow-hidden">
         <ContactSection colors={colors} />
       </section>
-      
-      {/* Footer */}
-      <footer className="py-6 text-center" style={{ backgroundColor: colors.background }}>
-        <div className="container mx-auto px-4">
-          <p style={{ color: colors.text + "80" }}>
-            © {new Date().getFullYear()} Mohammed Zaid Mir. All rights reserved.
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }
