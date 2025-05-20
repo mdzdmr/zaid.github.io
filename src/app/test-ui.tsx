@@ -309,7 +309,7 @@ export function BackgroundBeamsDemo() {
             
             {/* Social links */}
             <motion.div 
-              className="flex justify-center space-x-6 mt-8"
+              className="flex justify-center space-x-6 mt-8 relative z-10"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.5 }}
@@ -385,7 +385,7 @@ const SocialLink = ({ href, icon, color }: SocialLinkProps) => {
       target="_blank" 
       rel="noopener noreferrer"
       className="flex items-center justify-center w-12 h-12 rounded-full transition-transform hover:scale-110"
-      style={{ backgroundColor: color + '20', color: color }}
+      style={{ backgroundColor: color + '20', color: color, position: 'relative', zIndex: 20, pointerEvents: 'auto' }}
       whileHover={{ y: -5 }}
     >
       <FontAwesomeIcon icon={icon} size="lg" />
