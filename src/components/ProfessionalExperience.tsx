@@ -12,7 +12,7 @@ interface ExperienceData {
   duration: string;
   category: 'work';
   color: string;
-  logo: string; // Add this field for company logos
+  logo: string;
 }
 
 // Updated experience data with logo paths
@@ -24,7 +24,7 @@ const experiences: ExperienceData[] = [
     duration: "May 2025 - Present",
     category: 'work',
     color: "#4db6ac",
-    logo: "/rr.png" // Add your logo paths here (in public/logos folder)
+    logo: "/rr.png"
   },
   {
     id: 2,
@@ -94,24 +94,23 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
                   border: `1px solid ${exp.color}30`
                 }}
               >
-                {/* Company logo instead of icon */}
+                {/* Company logo circle container */}
                 <div 
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden p-2"
                   style={{ 
                     backgroundColor: exp.color + "20",
                     border: `1px solid ${exp.color}40`
                   }}
                 >
-                  {/* Fallback to first letter if image fails to load */}
-                  <div className="relative w-6 h-6">
+                  {/* Logo with better container fitting */}
+                  <div className="relative w-full h-full">
                     <Image
                       src={exp.logo}
                       alt={`${exp.company} logo`}
                       fill
-                      style={{ objectFit: 'contain' }}
+                      sizes="100%"
+                      className="object-contain p-0.5"
                       onError={(e) => {
-                        // This handles the case where the image fails to load
-                        // When image fails, the alt text will show or you can handle with a fallback
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
                         target.parentElement!.innerHTML = `<span style="color:${exp.color}" class="text-lg font-bold">${exp.company.charAt(0)}</span>`;
@@ -149,19 +148,20 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
                 <div className="flex flex-col items-center">
                   {/* Timeline node with company logo */}
                   <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center mb-3 z-10 overflow-hidden"
+                    className="w-12 h-12 rounded-full flex items-center justify-center mb-3 z-10 overflow-hidden p-2.5"
                     style={{ 
                       backgroundColor: exp.color + "20",
                       border: `2px solid ${exp.color}`
                     }}
                   >
-                    {/* Company logo with fallback */}
-                    <div className="relative w-7 h-7">
+                    {/* Company logo with proper circular fitting */}
+                    <div className="relative w-full h-full">
                       <Image
                         src={exp.logo}
                         alt={`${exp.company} logo`}
                         fill
-                        style={{ objectFit: 'contain' }}
+                        sizes="100%"
+                        className="object-contain p-0.5"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
