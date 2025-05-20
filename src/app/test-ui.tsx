@@ -57,6 +57,11 @@ export function BackgroundBeamsDemo() {
   const [section, setSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
   
+  // Define all possible sections, including contact for scrolling functionality
+  const allSections = ["home", "projects", "experience", "contact"];
+  // Define only the sections that appear in the navigation bar
+  const navSections = ["home", "projects", "experience"];
+  
   // Combined function to update state and scroll
   const scrollToSection = (sectionId: string) => {
     setSection(sectionId);
@@ -65,17 +70,16 @@ export function BackgroundBeamsDemo() {
 
   // Handle next/prev section navigation
   const navigateSection = (direction: 'next' | 'prev') => {
-    const sections = ["home", "projects", "experience", "contact"];
-    const currentIndex = sections.indexOf(section);
+    const currentIndex = allSections.indexOf(section);
     let newIndex;
     
     if (direction === 'next') {
-      newIndex = Math.min(currentIndex + 1, sections.length - 1);
+      newIndex = Math.min(currentIndex + 1, allSections.length - 1);
     } else {
       newIndex = Math.max(currentIndex - 1, 0);
     }
     
-    scrollToSection(sections[newIndex]);
+    scrollToSection(allSections[newIndex]);
   };
   
   // Track scroll position to create a translucent navbar effect
@@ -84,9 +88,7 @@ export function BackgroundBeamsDemo() {
       setScrolled(window.scrollY > 50);
       
       // Update active section based on scroll position
-      const sections = ["home", "projects", "experience", "contact"];
-      
-      for (const section of sections) {
+      for (const section of allSections) {
         const element = document.getElementById(section);
         if (element) {
           const rect = element.getBoundingClientRect();
@@ -159,7 +161,6 @@ export function BackgroundBeamsDemo() {
             <NavButton icon={faUserCircle} label="About" section="home" currentSection={section} setSection={setSection} colors={colors} />
             <NavButton icon={faCode} label="Projects" section="projects" currentSection={section} setSection={setSection} colors={colors} />
             <NavButton icon={faBriefcase} label="Experience" section="experience" currentSection={section} setSection={setSection} colors={colors} />
-            <NavButton icon={faEnvelope} label="Contact" section="contact" currentSection={section} setSection={setSection} colors={colors} />
           </div>
           
           <button 
