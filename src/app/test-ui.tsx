@@ -9,7 +9,6 @@ import { faEnvelope, faFileAlt, faCode, faBriefcase, faUserCircle, faCloud, faBr
 import { motion } from "framer-motion";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { Projects3DCarousel } from "@/components/Projects3DCarousel";
 import { ProjectsGrid } from "@/components/ProjectsGrid";
 import { ProfessionalExperience } from "@/components/ProfessionalExperience";
 import { ContactSection } from "@/components/ContactSection";
@@ -65,7 +64,6 @@ export function BackgroundBeamsDemo() {
   };
 
   // Handle next/prev section navigation
-  
   const navigateSection = (direction: 'next' | 'prev') => {
     const sections = ["home", "projects", "experience", "contact"];
     const currentIndex = sections.indexOf(section);
@@ -132,22 +130,6 @@ export function BackgroundBeamsDemo() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {/* Navigation Dots */}
-      <div className="fixed right-6 top-1/2 transform -translate-y-1/2 z-50 flex flex-col space-y-4">
-        {["home", "projects", "experience", "contact"].map((sectionId) => (
-          <button
-            key={sectionId}
-            onClick={() => scrollToSection(sectionId)}
-            className="w-3 h-3 rounded-full transition-all duration-300"
-            style={{
-              backgroundColor: section === sectionId ? colors.accent : colors.text + "40",
-              transform: section === sectionId ? "scale(1.5)" : "scale(1)",
-            }}
-            aria-label={`Navigate to ${sectionId} section`}
-          />
-        ))}
-      </div>
-      
       {/* Navigation Arrows */}
       <button 
         className={`fixed left-1/2 bottom-8 transform -translate-x-1/2 z-50 p-3 rounded-full bg-opacity-20 transition-opacity duration-300 ${section === "contact" ? "opacity-0" : "opacity-100"}`}
@@ -339,52 +321,19 @@ export function BackgroundBeamsDemo() {
             </motion.div>
           </motion.div>
         </div>
-        
-        {/* Scroll indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 flex flex-col items-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-        >
-          <span className="text-sm mb-2" style={{ color: colors.text + "80" }}>Scroll Down</span>
-          <motion.div 
-            className="w-6 h-10 rounded-full border-2 flex justify-center p-1"
-            style={{ borderColor: colors.text + "40" }}
-          >
-            <motion.div 
-              className="w-1 rounded-full h-2"
-              style={{ backgroundColor: colors.accent }}
-              animate={{ 
-                y: [0, 12, 0],
-              }}
-              transition={{ 
-                duration: 1.5, 
-                repeat: Infinity,
-                ease: "easeInOut" 
-              }}
-            ></motion.div>
-          </motion.div>
-        </motion.div>
       </section>
       
       {/* Projects Section */}
       <section id="projects" className="h-screen w-full snap-start snap-always overflow-hidden">
-        <div className="h-full overflow-y-auto">
-          <ProjectsGrid colors={colors} />
-        </div>
+        <ProjectsGrid colors={colors} />
       </section>
       
       <section id="experience" className="h-screen w-full snap-start snap-always overflow-hidden">
-        <div className="h-full overflow-y-auto">
-          <ProfessionalExperience colors={colors} />
-        </div>
+        <ProfessionalExperience colors={colors} />
       </section>
       
       <section id="contact" className="h-screen w-full snap-start snap-always overflow-hidden">
-        <div className="h-full overflow-y-auto">
-          <ContactSection colors={colors} />
-        </div>
+        <ContactSection colors={colors} />
       </section>
       
       {/* Footer */}
