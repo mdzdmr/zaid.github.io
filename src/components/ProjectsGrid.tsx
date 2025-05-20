@@ -98,9 +98,9 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
   };
   
   return (
-    <div className="h-screen flex flex-col pt-20 pb-4 px-4 md:px-8" style={{ background: colors.background }}>
+    <div className="h-screen flex flex-col items-center justify-center px-4 md:px-8" style={{ background: colors.background }}>
       <motion.h2 
-        className="text-3xl md:text-4xl font-bold mb-6 text-center"
+        className="text-3xl md:text-4xl font-bold mb-8 text-center"
         style={{ color: colors.text }}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
       </motion.h2>
       
       <motion.div 
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-5xl mx-auto flex-1 overflow-y-auto"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 max-w-5xl mx-auto"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -118,19 +118,19 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
         {projects.map((project) => (
           <motion.div
             key={project.id}
-            className={`rounded-lg overflow-hidden h-48 ${project.isMoreCard ? 'flex flex-col' : ''}`}
+            className={`rounded-lg overflow-hidden h-52 ${project.isMoreCard ? 'flex flex-col' : ''}`}
             variants={itemVariants}
             whileHover={{ y: -3, transition: { duration: 0.2 } }}
             style={{ 
               backgroundColor: colors.background, 
-              boxShadow: `0 4px 15px -5px ${project.color}30`,
+              boxShadow: `0 4px 15px -5px ${project.color}40`,
               border: `1px solid ${project.color}30`,
             }}
           >
             {project.isMoreCard ? (
               // Special "More Projects" card
               <>
-                <div className="relative h-20 w-full">
+                <div className="relative h-24 w-full">
                   <div 
                     className="absolute inset-0 flex items-center justify-center"
                     style={{ 
@@ -141,7 +141,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
                   </div>
                 </div>
                 
-                <div className="p-2 flex flex-col flex-grow">
+                <div className="p-3 flex flex-col flex-grow">
                   <h3 className="text-base font-bold mb-1" style={{ color: project.color }}>
                     {project.title}
                   </h3>
@@ -154,7 +154,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
                     href={project.githubLink} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-center justify-center space-x-1 py-1 px-3 mt-auto mb-1 rounded-md hover:opacity-90 transition-all text-xs"
+                    className="flex items-center justify-center space-x-1 py-1.5 px-3 mt-auto mb-1 rounded-md hover:opacity-90 transition-all text-sm"
                     style={{ 
                       backgroundColor: project.color,
                       color: '#ffffff'
@@ -168,7 +168,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
             ) : (
               // Regular project cards
               <>
-                <div className="relative h-20 w-full">
+                <div className="relative h-24 w-full">
                   <div 
                     className="absolute inset-0 flex items-center justify-center"
                     style={{ 
@@ -179,7 +179,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
                   </div>
                 </div>
                 
-                <div className="p-2 flex flex-col h-[6.5rem]">
+                <div className="p-3 flex flex-col h-28">
                   <h3 className="text-base font-bold mb-1 truncate" style={{ color: project.color }}>
                     {project.title}
                   </h3>
@@ -192,7 +192,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
                     {project.techStack.slice(0, 2).map(tech => (
                       <span 
                         key={`${project.id}-${tech}`}
-                        className="px-1.5 py-0.5 text-[10px] rounded-full"
+                        className="px-2 py-0.5 text-xs rounded-full"
                         style={{ 
                           backgroundColor: project.color + "15", 
                           color: project.color 
@@ -203,7 +203,7 @@ export const ProjectsGrid = ({ colors }: { colors: any }) => {
                     ))}
                     {project.techStack.length > 2 && (
                       <span 
-                        className="px-1.5 py-0.5 text-[10px] rounded-full"
+                        className="px-2 py-0.5 text-xs rounded-full"
                         style={{ 
                           backgroundColor: project.color + "15", 
                           color: project.color 
