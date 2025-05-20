@@ -49,7 +49,7 @@ const experiences: ExperienceData[] = [
   {
     id: 4,
     company: "University of Western Ontario",
-    position: "Undergraduate Student Researcher",
+    position: "UG Student Researcher",
     duration: "January 2025 - Jun 2023",
     category: 'work',
     color: "#fb8c00"
