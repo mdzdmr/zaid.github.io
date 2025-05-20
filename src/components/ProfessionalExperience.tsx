@@ -18,7 +18,7 @@ interface ExperienceData {
 // Updated experience data with logo paths
 const experiences: ExperienceData[] = [
   {
-    id: 1,
+    id: 4,
     company: "Robarts Research Institute",
     position: "SWE Intern",
     duration: "May 2025 - Present",
@@ -27,7 +27,7 @@ const experiences: ExperienceData[] = [
     logo: "/rr.png"
   },
   {
-    id: 2,
+    id: 3,
     company: "Stealth Startup",
     position: "Co-Founder / Founding Engineer",
     duration: "April 2025",
@@ -36,7 +36,7 @@ const experiences: ExperienceData[] = [
     logo: "/ss.jpeg"
   },
   {
-    id: 3,
+    id: 2,
     company: "Banking Analytics Lab",
     position: "Data Engineer Intern",
     duration: "July 2024 - April 2025",
@@ -45,7 +45,7 @@ const experiences: ExperienceData[] = [
     logo: "/bal.png"
   },
   {
-    id: 4,
+    id: 1,
     company: "University of Western Ontario",
     position: "UG Researcher",
     duration: "January 2025 - Jun 2023",
@@ -57,7 +57,7 @@ const experiences: ExperienceData[] = [
 
 // Future Node for continuation
 const FutureNodeContinuation = ({ color }: { color: string }) => (
-  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 -translate-x-3 flex flex-col items-center">
+  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 -translate-x-3 flex flex-col items-center z-20">
     {/* Dashed circle */}
     <motion.div 
       className="w-12 h-12 rounded-full flex items-center justify-center mb-3"
@@ -127,7 +127,71 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
         {/* Main timeline container */}
         <div className="relative flex flex-col space-y-10 md:space-y-0">
           {/* Timeline horizontal line - shortened */}
-          <div className="hidden md:block absolute left-0 right-20 top-1/2 h-0.5 transform -translate-y-1/2" style={{ backgroundColor: colors.accent + "40" }}></div>
+          <div className="hidden md:block absolute left-0 right-32 top-1/2 h-0.5 transform -translate-y-1/2" style={{ backgroundColor: colors.accent + "40" }}></div>
+          
+          {/* Container for experience items - using 75% width to leave space for continuation */}
+          <div className="hidden md:flex justify-between items-center relative w-full md:w-[85%]">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={exp.id}
+                className="w-1/4 px-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <div className="flex flex-col items-center">
+                  {/* Timeline node with company logo */}
+                  <div 
+                    className="w-12 h-12 rounded-full overflow-hidden mb-3 z-10"
+                    style={{ 
+                      backgroundColor: exp.color + "20",
+                      border: `2px solid ${exp.color}`
+                    }}
+                  >
+                    {/* Truly circular logo */}
+                    <div className="relative w-full h-full">
+                      <Image
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        fill
+                        sizes="100%"
+                        className="object-cover"
+                        style={{
+                          borderRadius: '50%' // Ensure circular cropping
+                        }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center"><span style="color:${exp.color}" class="text-xl font-bold">${exp.company.charAt(0)}</span></div>`;
+                        }}
+                      />
+                    </div>
+                  </div>
+                  
+                  {/* Experience card */}
+                  <div 
+                    className="rounded-lg p-3 w-full"
+                    style={{ 
+                      backgroundColor: colors.background, 
+                      boxShadow: `0 4px 15px -3px ${exp.color}30`,
+                      border: `1px solid ${exp.color}30`
+                    }}
+                  >
+                    <h3 className="text-sm font-bold truncate text-center" style={{ color: exp.color }}>
+                      {exp.position}
+                    </h3>
+                    <p className="text-xs text-center truncate" style={{ color: colors.text }}>
+                      {exp.company}
+                    </p>
+                    <div className="flex items-center justify-center mt-2 text-xs" style={{ color: colors.text + "80" }}>
+                      <FontAwesomeIcon icon={faCalendarAlt} className="mr-1" />
+                      <span>{exp.duration}</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
           
           {/* Add the continuation element */}
           <FutureNodeContinuation color={colors.accent} />
@@ -228,70 +292,6 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
                 </svg>
               </motion.div>
             </motion.div>
-          </div>
-          
-          {/* Desktop view - horizontal timeline */}
-          <div className="hidden md:flex justify-between items-center relative">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={exp.id}
-                className="w-1/4 px-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
-              >
-                <div className="flex flex-col items-center">
-                  {/* Timeline node with company logo */}
-                  <div 
-                    className="w-12 h-12 rounded-full overflow-hidden mb-3 z-10"
-                    style={{ 
-                      backgroundColor: exp.color + "20",
-                      border: `2px solid ${exp.color}`
-                    }}
-                  >
-                    {/* Truly circular logo */}
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={exp.logo}
-                        alt={`${exp.company} logo`}
-                        fill
-                        sizes="100%"
-                        className="object-cover"
-                        style={{
-                          borderRadius: '50%' // Ensure circular cropping
-                        }}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center"><span style="color:${exp.color}" class="text-xl font-bold">${exp.company.charAt(0)}</span></div>`;
-                        }}
-                      />
-                    </div>
-                  </div>
-                  
-                  {/* Experience card */}
-                  <div 
-                    className="rounded-lg p-3 w-full"
-                    style={{ 
-                      backgroundColor: colors.background, 
-                      boxShadow: `0 4px 15px -3px ${exp.color}30`,
-                      border: `1px solid ${exp.color}30`
-                    }}
-                  >
-                    <h3 className="text-sm font-bold truncate text-center" style={{ color: exp.color }}>
-                      {exp.position}
-                    </h3>
-                    <p className="text-xs text-center truncate" style={{ color: colors.text }}>
-                      {exp.company}
-                    </p>
-                    <div className="flex items-center justify-center mt-2 text-xs" style={{ color: colors.text + "80" }}>
-                      <FontAwesomeIcon icon={faCalendarAlt} className="mr-1" />
-                      <span>{exp.duration}</span>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </div>
