@@ -24,7 +24,7 @@ const experiences: ExperienceData[] = [
     duration: "May 2025 - Present",
     category: 'work',
     color: "#4db6ac",
-    logo: "/logos/robarts.png" // Add your logo paths here (in public/logos folder)
+    logo: "/rr.png" // Add your logo paths here (in public/logos folder)
   },
   {
     id: 2,
@@ -33,7 +33,7 @@ const experiences: ExperienceData[] = [
     duration: "April 2025",
     category: 'work',
     color: "#ec407a",
-    logo: "/logos/startup.png"
+    logo: "/ss.jpeg"
   },
   {
     id: 3,
@@ -42,7 +42,7 @@ const experiences: ExperienceData[] = [
     duration: "July 2024 - April 2025",
     category: 'work',
     color: "#42a5f5",
-    logo: "/logos/banking.png"
+    logo: "/bal.png"
   },
   {
     id: 4,
@@ -51,7 +51,7 @@ const experiences: ExperienceData[] = [
     duration: "January 2025 - Jun 2023",
     category: 'work',
     color: "#fb8c00",
-    logo: "/logos/western.png"
+    logo: "/uwo.jpeg"
   }
 ];
 
