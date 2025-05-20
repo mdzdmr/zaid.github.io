@@ -96,24 +96,27 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
               >
                 {/* Company logo circle container */}
                 <div 
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden p-2"
+                  className="w-10 h-10 rounded-full flex-shrink-0 overflow-hidden"
                   style={{ 
                     backgroundColor: exp.color + "20",
                     border: `1px solid ${exp.color}40`
                   }}
                 >
-                  {/* Logo with better container fitting */}
+                  {/* Circular logo with cover positioning */}
                   <div className="relative w-full h-full">
                     <Image
                       src={exp.logo}
                       alt={`${exp.company} logo`}
                       fill
                       sizes="100%"
-                      className="object-contain p-0.5"
+                      className="object-cover"
+                      style={{
+                        borderRadius: '50%' // Ensure circular cropping
+                      }}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
                         target.style.display = 'none';
-                        target.parentElement!.innerHTML = `<span style="color:${exp.color}" class="text-lg font-bold">${exp.company.charAt(0)}</span>`;
+                        target.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center"><span style="color:${exp.color}" class="text-lg font-bold">${exp.company.charAt(0)}</span></div>`;
                       }}
                     />
                   </div>
@@ -148,24 +151,27 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
                 <div className="flex flex-col items-center">
                   {/* Timeline node with company logo */}
                   <div 
-                    className="w-12 h-12 rounded-full flex items-center justify-center mb-3 z-10 overflow-hidden p-2.5"
+                    className="w-12 h-12 rounded-full overflow-hidden mb-3 z-10"
                     style={{ 
                       backgroundColor: exp.color + "20",
                       border: `2px solid ${exp.color}`
                     }}
                   >
-                    {/* Company logo with proper circular fitting */}
+                    {/* Truly circular logo */}
                     <div className="relative w-full h-full">
                       <Image
                         src={exp.logo}
                         alt={`${exp.company} logo`}
                         fill
                         sizes="100%"
-                        className="object-contain p-0.5"
+                        className="object-cover"
+                        style={{
+                          borderRadius: '50%' // Ensure circular cropping
+                        }}
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
                           target.style.display = 'none';
-                          target.parentElement!.innerHTML = `<span style="color:${exp.color}" class="text-xl font-bold">${exp.company.charAt(0)}</span>`;
+                          target.parentElement!.innerHTML = `<div class="w-full h-full flex items-center justify-center"><span style="color:${exp.color}" class="text-xl font-bold">${exp.company.charAt(0)}</span></div>`;
                         }}
                       />
                     </div>
