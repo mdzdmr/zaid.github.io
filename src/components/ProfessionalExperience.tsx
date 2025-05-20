@@ -55,6 +55,136 @@ const experiences: ExperienceData[] = [
   }
 ];
 
+// Pulsing Dot with "Present" label for continuation
+const PulsingDotContinuation = ({ color }: { color: string }) => (
+  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 flex flex-col items-center">
+    {/* Pulsing dot */}
+    <motion.div className="relative">
+      <motion.div 
+        className="w-5 h-5 rounded-full bg-opacity-70 absolute"
+        style={{ backgroundColor: color }}
+        animate={{
+          scale: [1, 1.5, 1],
+          opacity: [0.7, 0.3, 0.7]
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
+      <div 
+        className="w-5 h-5 rounded-full"
+        style={{ backgroundColor: color }}
+      />
+    </motion.div>
+    {/* "Present" label */}
+    <div className="mt-2 text-xs font-medium" style={{ color }}>
+      Present
+    </div>
+  </div>
+);
+
+// Future Node for continuation
+const FutureNodeContinuation = ({ color }: { color: string }) => (
+  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 -translate-x-6 flex flex-col items-center">
+    {/* Dashed circle */}
+    <motion.div 
+      className="w-12 h-12 rounded-full flex items-center justify-center mb-3"
+      style={{ 
+        border: `2px dashed ${color}80`
+      }}
+      animate={{
+        borderColor: [`${color}50`, color, `${color}50`]
+      }}
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    >
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="20" 
+        height="20" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke={color} 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+      >
+        <circle cx="12" cy="12" r="10" />
+        <line x1="12" y1="8" x2="12" y2="16" />
+        <line x1="8" y1="12" x2="16" y2="12" />
+      </svg>
+    </motion.div>
+    
+    {/* Label */}
+    <div 
+      className="rounded-lg px-2 py-1"
+      style={{ 
+        backgroundColor: color + "20",
+        border: `1px solid ${color}30`
+      }}
+    >
+      <div className="text-xs font-medium text-center" style={{ color }}>
+        Next Chapter
+      </div>
+    </div>
+  </div>
+);
+
+// Animated spaceship for continuation
+const SpaceshipContinuation = ({ color }: { color: string }) => (
+  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 -translate-x-6 flex flex-col items-center">
+    <motion.div
+      animate={{
+        x: [0, 10, 0],
+        y: [0, -5, 0],
+        rotate: [0, 5, 0, -5, 0]
+      }}
+      transition={{
+        duration: 4,
+        repeat: Infinity,
+        ease: "easeInOut"
+      }}
+    >
+      <svg 
+        xmlns="http://www.w3.org/2000/svg"
+        width="32" 
+        height="32" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke={color} 
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+      >
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+      </svg>
+    </motion.div>
+    <motion.div 
+      className="w-20 h-0.5 mt-2"
+      style={{ 
+        background: `linear-gradient(to right, ${color}, transparent)` 
+      }}
+      animate={{
+        width: ["0px", "80px"]
+      }}
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut"
+      }}
+    />
+  </div>
+);
+
 export const ProfessionalExperience = ({ colors }: { colors: any }) => {
   return (
     <div 
@@ -78,6 +208,13 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
         <div className="relative flex flex-col space-y-10 md:space-y-0">
           {/* Timeline horizontal line */}
           <div className="hidden md:block absolute left-0 right-0 top-1/2 h-0.5 transform -translate-y-1/2" style={{ backgroundColor: colors.accent + "40" }}></div>
+          
+          {/* Add the continuation element */}
+          <SpaceshipContinuation color={colors.accent} />
+          {/* Alternatively use: 
+              <PulsingDotContinuation color={colors.accent} /> 
+              <FutureNodeContinuation color={colors.accent} />
+          */}
           
           {/* Mobile view - vertical layout */}
           <div className="md:hidden space-y-6">
@@ -136,6 +273,45 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
                 </div>
               </motion.div>
             ))}
+            
+            {/* Mobile continuation element - simple version */}
+            <motion.div
+              className="flex items-center justify-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
+              <motion.div
+                className="h-10 w-10 rounded-full flex items-center justify-center"
+                style={{ 
+                  backgroundColor: colors.accent + "20",
+                  border: `1px dashed ${colors.accent}`
+                }}
+                animate={{
+                  scale: [1, 1.1, 1],
+                  borderColor: [colors.accent + "60", colors.accent, colors.accent + "60"]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <svg 
+                  xmlns="http://www.w3.org/2000/svg" 
+                  width="20" 
+                  height="20" 
+                  viewBox="0 0 24 24" 
+                  fill="none" 
+                  stroke={colors.accent} 
+                  strokeWidth="2" 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round"
+                >
+                  <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+              </motion.div>
+            </motion.div>
           </div>
           
           {/* Desktop view - horizontal timeline */}
