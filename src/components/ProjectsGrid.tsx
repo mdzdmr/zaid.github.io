@@ -32,7 +32,7 @@ const projects: ProjectData[] = [
     id: 2,
     title: "TileVania",
     description: "A 2D platformer game inspired by classic Mario games.",
-    image: "/tv.jpg", // Replace with your image path
+    image: "/tv.png", // Replace with your image path
     techStack: ["C#", "Unity"],
     githubLink: "https://github.com/mdzdmr/TileVania",
     color: "#ec407a"
@@ -41,7 +41,7 @@ const projects: ProjectData[] = [
     id: 3,
     title: "jobSpace",
     description: "building startup...",
-    image: "/ss.jpg", // Replace with your image path
+    image: "/ss.jpeg", // Replace with your image path
     techStack: ["TypeScript", "React", "Firebase"],
     githubLink: "https://github.com/mdzdmr",
     color: "#42a5f5"
@@ -50,7 +50,7 @@ const projects: ProjectData[] = [
     id: 4,
     title: "SignSpeak",
     description: "A real-time ASL converter that tracks and classifies hand gestures into corresponding letters.",
-    image: "/ss.jpg", // Replace with your image path
+    image: "/ss.avif", // Replace with your image path
     techStack: ["Python", "cvzone", "numpy", "GoogleTM"],
     githubLink: "https://github.com/mdzdmr/SignSpeak",
     color: "#fb8c00"
@@ -59,7 +59,7 @@ const projects: ProjectData[] = [
     id: 5,
     title: "Visual File System Explorer",
     description: "An interactive Java application to visualize and manage the file system structure using a tree-based data structure, equipped with a graphical user interface.",
-    image: "/vfsv.jpg", // Replace with your image path
+    image: "/vfsv.avif", // Replace with your image path
     techStack: ["Java"],
     githubLink: "https://github.com/mdzdmr/Visual-File-System-Explorer",
     color: "#fb8c00"
