@@ -2,25 +2,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { 
-  faBuilding, 
-  faGraduationCap, 
-  faBriefcase, 
-  faCalendarAlt,
-  faArrowRight
-} from "@fortawesome/free-solid-svg-icons";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 interface ExperienceData {
   id: number;
   company: string;
   position: string;
   duration: string;
-  category: 'work' | 'education';
+  category: 'work';
   color: string;
+  logo: string; // Add this field for company logos
 }
 
-// Simplified experience data with only the essential fields
+// Updated experience data with logo paths
 const experiences: ExperienceData[] = [
   {
     id: 1,
@@ -28,7 +23,8 @@ const experiences: ExperienceData[] = [
     position: "Software Engineer Intern",
     duration: "May 2025 - Present",
     category: 'work',
-    color: "#4db6ac"
+    color: "#4db6ac",
+    logo: "/logos/robarts.png" // Add your logo paths here (in public/logos folder)
   },
   {
     id: 2,
@@ -36,7 +32,8 @@ const experiences: ExperienceData[] = [
     position: "Co-Founder / Founding Engineer",
     duration: "April 2025",
     category: 'work',
-    color: "#ec407a"
+    color: "#ec407a",
+    logo: "/logos/startup.png"
   },
   {
     id: 3,
@@ -44,7 +41,8 @@ const experiences: ExperienceData[] = [
     position: "Data Engineer Intern",
     duration: "July 2024 - April 2025",
     category: 'work',
-    color: "#42a5f5"
+    color: "#42a5f5",
+    logo: "/logos/banking.png"
   },
   {
     id: 4,
@@ -52,21 +50,10 @@ const experiences: ExperienceData[] = [
     position: "UG Student Researcher",
     duration: "January 2025 - Jun 2023",
     category: 'work',
-    color: "#fb8c00"
+    color: "#fb8c00",
+    logo: "/logos/western.png"
   }
 ];
-
-// Helper function to get the icon for a category
-const getCategoryIcon = (category: string): IconDefinition => {
-  switch(category) {
-    case 'work':
-      return faBriefcase;
-    case 'education':
-      return faGraduationCap;
-    default:
-      return faBuilding;
-  }
-};
 
 export const ProfessionalExperience = ({ colors }: { colors: any }) => {
   return (
@@ -90,12 +77,7 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
         {/* Main timeline container */}
         <div className="relative flex flex-col space-y-10 md:space-y-0">
           {/* Timeline horizontal line */}
-          <div className="hidden md:block absolute left-0 right-8 top-1/2 h-0.5 transform -translate-y-1/2" style={{ backgroundColor: colors.accent + "40" }}>
-            {/* Arrow at the end */}
-            <div className="absolute right-0 w-8 h-8 -mt-4 -mr-4 flex items-center justify-center rounded-full" style={{ backgroundColor: colors.accent }}>
-              <FontAwesomeIcon icon={faArrowRight} className="text-white" />
-            </div>
-          </div>
+          <div className="hidden md:block absolute left-0 right-0 top-1/2 h-0.5 transform -translate-y-1/2" style={{ backgroundColor: colors.accent + "40" }}></div>
           
           {/* Mobile view - vertical layout */}
           <div className="md:hidden space-y-6">
@@ -112,14 +94,30 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
                   border: `1px solid ${exp.color}30`
                 }}
               >
+                {/* Company logo instead of icon */}
                 <div 
-                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0"
-                  style={{ backgroundColor: exp.color + "20" }}
+                  className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0 overflow-hidden"
+                  style={{ 
+                    backgroundColor: exp.color + "20",
+                    border: `1px solid ${exp.color}40`
+                  }}
                 >
-                  <FontAwesomeIcon 
-                    icon={getCategoryIcon(exp.category)} 
-                    style={{ color: exp.color }}
-                  />
+                  {/* Fallback to first letter if image fails to load */}
+                  <div className="relative w-6 h-6">
+                    <Image
+                      src={exp.logo}
+                      alt={`${exp.company} logo`}
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      onError={(e) => {
+                        // This handles the case where the image fails to load
+                        // When image fails, the alt text will show or you can handle with a fallback
+                        const target = e.target as HTMLImageElement;
+                        target.style.display = 'none';
+                        target.parentElement!.innerHTML = `<span style="color:${exp.color}" class="text-lg font-bold">${exp.company.charAt(0)}</span>`;
+                      }}
+                    />
+                  </div>
                 </div>
                 
                 <div className="flex-1 min-w-0">
@@ -149,18 +147,28 @@ export const ProfessionalExperience = ({ colors }: { colors: any }) => {
                 transition={{ duration: 0.4, delay: index * 0.1 }}
               >
                 <div className="flex flex-col items-center">
-                  {/* Timeline node */}
+                  {/* Timeline node with company logo */}
                   <div 
-                    className="w-10 h-10 rounded-full flex items-center justify-center mb-3 z-10"
+                    className="w-12 h-12 rounded-full flex items-center justify-center mb-3 z-10 overflow-hidden"
                     style={{ 
                       backgroundColor: exp.color + "20",
                       border: `2px solid ${exp.color}`
                     }}
                   >
-                    <FontAwesomeIcon 
-                      icon={getCategoryIcon(exp.category)} 
-                      style={{ color: exp.color }}
-                    />
+                    {/* Company logo with fallback */}
+                    <div className="relative w-7 h-7">
+                      <Image
+                        src={exp.logo}
+                        alt={`${exp.company} logo`}
+                        fill
+                        style={{ objectFit: 'contain' }}
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.parentElement!.innerHTML = `<span style="color:${exp.color}" class="text-xl font-bold">${exp.company.charAt(0)}</span>`;
+                        }}
+                      />
+                    </div>
                   </div>
                   
                   {/* Experience card */}
