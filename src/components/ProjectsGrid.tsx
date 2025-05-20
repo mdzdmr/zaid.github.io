@@ -51,7 +51,7 @@ const projects: ProjectData[] = [
     title: "SignSpeak",
     description: "A real-time ASL converter that tracks and classifies hand gestures into corresponding letters.",
     image: "/ss.jpg", // Replace with your image path
-    techStack: ["Python", "cvzone", "numpy", "GoogleTM],
+    techStack: ["Python", "cvzone", "numpy", "GoogleTM"],
     githubLink: "https://github.com/mdzdmr/SignSpeak",
     color: "#fb8c00"
   }, 
