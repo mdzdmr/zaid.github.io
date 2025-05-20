@@ -22,7 +22,7 @@ const projects: ProjectData[] = [
   {
     id: 1,
     title: "mittensOS",
-    description: "A Python-based chess game engine with a graphical interface using Pygame.",
+    description: "A Python-based chess game engine.",
     image: "/mittens.avif",
     techStack: ["Python", "Pygame"],
     githubLink: "https://github.com/mdzdmr/mittensOS",
@@ -31,7 +31,7 @@ const projects: ProjectData[] = [
   {
     id: 2,
     title: "TileVania",
-    description: "A 2D platformer game inspired by classic Mario games.",
+    description: "A 2D platformer game inspired by classic Mario.",
     image: "/tv.png",
     techStack: ["C#", "Unity"],
     githubLink: "https://github.com/mdzdmr/TileVania",
@@ -43,13 +43,12 @@ const projects: ProjectData[] = [
     description: "Building startup focused on job search and recruitment.",
     image: "/ss.jpeg",
     techStack: ["TypeScript", "React", "Firebase"],
-    githubLink: "https://github.com/mdzdmr",
     color: "#42a5f5"
   },
   {
     id: 4,
     title: "SignSpeak",
-    description: "A real-time ASL converter that tracks and classifies hand gestures.",
+    description: "A real-time ASL converter.",
     image: "/ss.avif",
     techStack: ["Python", "cvzone", "numpy", "GoogleTM"],
     githubLink: "https://github.com/mdzdmr/SignSpeak",
@@ -58,7 +57,7 @@ const projects: ProjectData[] = [
   {
     id: 5,
     title: "File Explorer",
-    description: "An interactive Java application to visualize file system structure.",
+    description: "An interactive application to visualize your file system.",
     image: "/vfsv.avif",
     techStack: ["Java"],
     githubLink: "https://github.com/mdzdmr/Visual-File-System-Explorer",
