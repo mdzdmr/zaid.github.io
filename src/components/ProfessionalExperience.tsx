@@ -24,34 +24,34 @@ interface ExperienceData {
 const experiences: ExperienceData[] = [
   {
     id: 1,
-    company: "Tech Innovations Inc.",
-    position: "Senior Software Developer",
-    duration: "Jan 2023 - Present",
+    company: "Robarts Research Institute",
+    position: "Software Engineer Intern",
+    duration: "May 2025 - Present",
     category: 'work',
     color: "#4db6ac"
   },
   {
     id: 2,
-    company: "Digital Solutions Ltd.",
-    position: "Full Stack Developer",
-    duration: "Mar 2021 - Dec 2022",
+    company: "Stealth Startup",
+    position: "Co-Founder / Founding Engineer",
+    duration: "April 2025",
     category: 'work',
     color: "#ec407a"
   },
   {
     id: 3,
-    company: "WebCraft Studio",
-    position: "Frontend Developer",
-    duration: "Jun 2019 - Feb 2021",
+    company: "Banking Analytics Lab",
+    position: "Data Engineer Intern",
+    duration: "July 2024 - April 2025",
     category: 'work',
     color: "#42a5f5"
   },
   {
     id: 4,
-    company: "University of Technology",
-    position: "Bachelor of Computer Science",
-    duration: "Sep 2015 - May 2019",
-    category: 'education',
+    company: "University of Western Ontario",
+    position: "Undergraduate Student Researcher",
+    duration: "January 2025 - Jun 2023",
+    category: 'work',
     color: "#fb8c00"
   }
 ];
