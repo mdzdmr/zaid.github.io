@@ -11,7 +11,7 @@ interface ProjectData {
   description: string;
   image: string;
   techStack: string[];
-  githubLink: string;
+  githubLink?: string;
   liveLink?: string;
   color: string;
   isMoreCard?: boolean;
